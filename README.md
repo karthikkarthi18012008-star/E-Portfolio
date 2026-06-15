@@ -1,4 +1,4 @@
-🚀 Karthik T - AI/ML Engineer Portfolio
+ 🚀 Karthik T - AI/ML Engineer Portfolio
 
 Welcome to my personal E-Portfolio Website. This portfolio showcases my skills, education, projects, and journey as an aspiring Artificial Intelligence and Machine Learning Engineer.
 
