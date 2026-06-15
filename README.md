@@ -65,7 +65,7 @@ Karthik T
 www.linkedin.com/in/karthik-t-932564369
 
 🐙 GitHub:
-(Add your GitHub profile link)
+https://github.com/karthikkarthi18012008-star
 
 🎯 Career Objective
 
