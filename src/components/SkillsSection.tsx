@@ -2,38 +2,51 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 
-const bentoCategories = [
+interface SkillCategory {
+  title: string;
+  badge: string;
+  items: string[];
+  description: string;
+  stat: string;
+  colSpan: string;
+}
+
+const skillCategories: SkillCategory[] = [
   {
-    title: 'FRONTEND ARCHITECTURE',
+    title: 'BUSINESS INTELLIGENCE',
+    badge: 'CORE FOCUS',
+    items: ['Power BI', 'Power Query', 'DAX', 'Data Modeling', 'Tableau'],
+    description:
+      'Designing executive dashboards, formulating complex DAX calculations, performing multi-table star schema data modeling, and automated ETL transformations via Power Query.',
+    stat: 'DASHBOARD ARCHITECTURE',
+    colSpan: 'lg:col-span-6',
+  },
+  {
+    title: 'DATA ANALYTICS',
     badge: 'CORE PILLAR',
-    items: ['React.js', 'React Native', 'Tailwind CSS', 'Electron.js'],
-    description: 'Specialized in building high-performance client applications, custom component libraries, and immersive desktop/mobile interfaces.',
-    stat: '100% RESPONSIVE',
+    items: ['SQL', 'Python', 'Pandas', 'NumPy', 'Excel'],
+    description:
+      'Querying relational and cloud datasets, executing exploratory data analysis (EDA), statistical aggregation, data wrangling with Pandas & NumPy, and advanced financial modeling in Excel.',
+    stat: 'EXPLORATION & MODELING',
+    colSpan: 'lg:col-span-6',
+  },
+  {
+    title: 'DATA / CLOUD INFRASTRUCTURE',
+    badge: 'CLOUD PIPELINES',
+    items: ['Google BigQuery', 'Snowflake', 'AWS S3'],
+    description:
+      'Connecting cloud data warehouses to BI reporting engines, executing cloud SQL analytics, and handling large-scale analytical datasets across modern cloud storage.',
+    stat: 'CLOUD WAREHOUSING',
     colSpan: 'lg:col-span-7',
   },
   {
-    title: 'DISTRIBUTED BACKEND',
-    badge: 'HIGH CONCURRENCY',
-    items: ['Node.js', 'Express.js', 'Spring Boot', 'Docker', 'Redis'],
-    description: 'Engineered RESTful APIs, JWT role-based access control, caching layers, and multi-tenant SaaS backend isolation.',
-    stat: '< 40ms LATENCY',
+    title: 'ANALYTICAL WORKFLOW',
+    badge: 'METHODOLOGY',
+    items: ['Data Cleaning', 'Trend Analysis', 'DAX Measures', 'Executive Reporting'],
+    description:
+      'Systematic data transformation lifecycle: taking ambiguous raw records, establishing data integrity, discovering patterns, and presenting clear executive narratives.',
+    stat: 'RAW TO INSIGHT',
     colSpan: 'lg:col-span-5',
-  },
-  {
-    title: 'DATA PLATFORMS',
-    badge: 'PERSISTENCE',
-    items: ['MongoDB Atlas', 'PostgreSQL', 'MySQL'],
-    description: 'Designing resilient relational and document schemas with optimized indexing and transaction isolation.',
-    stat: 'ACID & NOSQL',
-    colSpan: 'lg:col-span-5',
-  },
-  {
-    title: 'ALGORITHMS & MACHINE LEARNING',
-    badge: 'INTELLIGENCE',
-    items: ['C++', 'Python', 'Java', 'scikit-learn', 'OpenAI API'],
-    description: '1200+ algorithm problems solved. Applied Random Forest classifiers for real-time risk heatmaps and NLP policy analyzers.',
-    stat: '1200+ SOLVED',
-    colSpan: 'lg:col-span-7',
   },
 ];
 
@@ -67,9 +80,14 @@ export const SkillsSection: React.FC = () => {
   return (
     <section
       id="skills"
-      className="relative w-screen bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-8 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
+      className="relative z-20 w-screen bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black pt-28 lg:pt-36 pb-24 px-6 sm:px-12 lg:px-20 overflow-hidden flex flex-col justify-center"
     >
-      {/* Ambient Glows */}
+      {/* Top subtle section divider line to ensure zero visual overlap */}
+      <div className="max-w-7xl mx-auto w-full mb-12">
+        <div className="w-full h-[1px] bg-gradient-to-r from-transparent via-[#8C6D4F]/30 to-transparent" />
+      </div>
+
+      {/* Ambient Studio Glows */}
       <div className="absolute top-1/3 left-1/4 w-[34rem] h-[34rem] bg-[#D4AF37]/5 rounded-full blur-[170px] pointer-events-none" />
       <div className="absolute bottom-10 right-1/4 w-[28rem] h-[28rem] bg-[#8C6D4F]/5 rounded-full blur-[160px] pointer-events-none" />
 
@@ -87,7 +105,7 @@ export const SkillsSection: React.FC = () => {
             className="text-[11px] font-medium tracking-[0.35em] uppercase text-[#D4AF37]"
             style={{ fontFamily: "'Montserrat', sans-serif" }}
           >
-            03 / TECH MATRIX
+            03 / CAPABILITIES &amp; TOOLKIT
           </span>
           <div className="w-20 h-[1px] bg-gradient-to-r from-[#D4AF37]/80 via-[#8C6D4F]/40 to-transparent" />
         </motion.div>
@@ -98,17 +116,17 @@ export const SkillsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-10"
+          className="mb-12"
         >
           <h2
             className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] tracking-tight uppercase leading-[0.85] select-none"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              ARCHITECTURAL MASTERY.
+              ANALYTICS TOOLKIT.
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.35)]">
-              PRECISION APPLIED.
+              BUSINESS INTELLIGENCE MATRIX.
             </span>
           </h2>
         </motion.div>
@@ -121,14 +139,14 @@ export const SkillsSection: React.FC = () => {
           viewport={{ once: true, margin: '-60px' }}
           className="grid grid-cols-1 lg:grid-cols-12 gap-6"
         >
-          {bentoCategories.map((block, idx) => (
+          {skillCategories.map((block, idx) => (
             <motion.div
               key={block.title}
               variants={cardVariants}
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
               whileHover={{ y: -5, transition: { duration: 0.25 } }}
-              className={`${block.colSpan} relative p-8 sm:p-9 rounded-sm border border-[#8C6D4F]/35 bg-[#100D0B]/85 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-[#D4AF37]/80 hover:shadow-[0_16px_45px_rgba(212,175,55,0.14)] cursor-pointer group`}
+              className={`${block.colSpan} relative p-8 sm:p-9 rounded-sm border border-[#8C6D4F]/35 bg-[#100D0B]/85 backdrop-blur-xl overflow-hidden transition-all duration-500 hover:border-[#D4AF37]/80 hover:shadow-[0_16px_45px_rgba(212,175,55,0.14)] cursor-default group`}
             >
               {/* Top Subtle Border Highlight */}
               <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -168,7 +186,7 @@ export const SkillsSection: React.FC = () => {
                 {block.items.map((tech) => (
                   <span
                     key={tech}
-                    className="px-3.5 py-1.5 text-[10.5px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/35 bg-[#171310] text-[#E8D7C5] group-hover:border-[#D4AF37]/50 group-hover:bg-[#1F1914] group-hover:text-white transition-all duration-300"
+                    className="px-3.5 py-1.5 text-[11px] font-medium tracking-[0.16em] uppercase rounded-sm border border-[#8C6D4F]/40 bg-[#171310] text-[#E8D7C5] group-hover:border-[#D4AF37]/60 group-hover:bg-[#1F1914] group-hover:text-white transition-all duration-300"
                     style={{ fontFamily: "'Montserrat', sans-serif" }}
                   >
                     {tech}

@@ -7,8 +7,8 @@
 .scroll-stack-inner {
   position: relative;
   width: 100%;
-  padding-top: 4vh;
-  padding-bottom: 50vh; /* creates the runway so all cards stack and lock at the top */
+  padding-top: 2vh;
+  padding-bottom: 75vh; /* ample runway so all 4 cards stack, lock, and smoothly exit */
 }
 
 .scroll-stack-card {
@@ -25,5 +25,5 @@
 
 .scroll-stack-end {
   width: 100%;
-  height: 1px;
+  height: 20px;
 }

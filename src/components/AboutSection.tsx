@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import type { Variants } from 'framer-motion';
-import aboutImg from '../assets/about.png';
+import karthikPortraitImg from '../assets/karthik_portrait.jpg';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.18,
+      staggerChildren: 0.16,
       delayChildren: 0.15,
     },
   },
@@ -31,7 +30,7 @@ export const AboutSection: React.FC = () => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isCardHovered, setIsCardHovered] = useState(false);
 
-  // 1. Motion Values
+  // 1. Motion Values for 3D card tilt
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const spotlightX = useMotionValue(200);
@@ -41,10 +40,10 @@ export const AboutSection: React.FC = () => {
   const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [16, -16]), { damping: 18, stiffness: 220 });
   const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-16, 16]), { damping: 18, stiffness: 220 });
 
-  // 3. Top-Level Unconditional Transform for Spotlight Background
+  // 3. Spotlight Background
   const spotlightBg = useTransform(
     [spotlightX, spotlightY],
-    ([x, y]) => `radial-gradient(circle 240px at ${x}px ${y}px, rgba(255,255,255,0.35), rgba(212,175,55,0.18), transparent 80%)`
+    ([x, y]) => `radial-gradient(circle 240px at ${x}px ${y}px, rgba(255,255,255,0.3), rgba(212,175,55,0.18), transparent 80%)`
   );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -71,7 +70,7 @@ export const AboutSection: React.FC = () => {
       id="about" 
       className="relative w-screen min-h-screen bg-black text-[#E8DFD8] font-sans selection:bg-[#cbb59d] selection:text-black py-24 lg:py-32 px-6 sm:px-12 lg:px-20 overflow-hidden flex items-center"
     >
-      {/* ================= BACKGROUND GLOWS & FLOATING PARTICLES ================= */}
+      {/* Background Glows */}
       <motion.div 
         animate={{ scale: [1, 1.2, 1], opacity: [0.08, 0.16, 0.08] }}
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
@@ -113,31 +112,54 @@ export const AboutSection: React.FC = () => {
             viewport={{ once: true, margin: "-100px" }}
             className="lg:col-span-7 flex flex-col justify-center"
           >
-            {/* Cinematic Headline with Glow Flare */}
+            {/* Cinematic Headline */}
             <motion.div variants={fadeUpVariants} className="relative mb-6 select-none">
               <h2
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.4rem] tracking-tight uppercase leading-[0.88]"
                 style={{ fontFamily: "'Bebas Neue', sans-serif" }}
               >
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#D5CBC0] to-[#605448] drop-shadow-[0_4px_10px_rgba(0,0,0,0.85)]">
-                  I DON'T JUST WRITE CODE.
+                  DISCOVERING PATTERNS.
                 </span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-b from-[#F7E7C4] via-[#C99E5D] to-[#543B1A] drop-shadow-[0_8px_25px_rgba(201,158,93,0.3)]">
-                  I BUILD WHAT'S NEXT.
+                  COMMUNICATING INSIGHTS.
                 </span>
               </h2>
             </motion.div>
 
-            {/* Concise Bio Paragraph */}
+            {/* Concise Bio Paragraphs */}
             <motion.p
               variants={fadeUpVariants}
-              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-10 max-w-xl"
+              className="text-xs sm:text-sm md:text-[14.5px] font-light text-[#B3A497] leading-[1.85] tracking-wide mb-5 max-w-xl"
               style={{ fontFamily: "'Montserrat', sans-serif" }}
             >
-              I'm <span className="text-[#F3DBB3] font-medium">Damisetti Shamya Lohitha</span>, a Full Stack Developer and Data Science student specializing in building scalable web architectures, AI-integrated platforms, and refined digital experiences. With a strong algorithmic foundation and a focus on clean engineering, I turn complex requirements into impactful products.
+              I'm <span className="text-[#F3DBB3] font-medium">Karthik T</span>, a B.Tech Artificial Intelligence &amp; Machine Learning student at <span className="text-[#F3DBB3]">REVA University</span> in Bengaluru, dedicated to data analytics and business intelligence.
             </motion.p>
 
-            {/* Concise 4-Item Achievement Metrics Grid */}
+            <motion.p
+              variants={fadeUpVariants}
+              className="text-xs sm:text-sm md:text-[14px] font-light text-[#A8988B] leading-[1.85] tracking-wide mb-8 max-w-xl"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              My focus is on transforming raw, multi-source records into high-value business insights: querying and analyzing data in <span className="text-[#EAD8C7] font-medium">SQL &amp; Google BigQuery</span>, cleaning datasets via <span className="text-[#EAD8C7] font-medium">Power Query</span>, building structured star-schema data models, writing analytical <span className="text-[#EAD8C7] font-medium">DAX</span> measures, and designing interactive <span className="text-[#EAD8C7] font-medium">Power BI</span> dashboards that support data-driven decision making.
+            </motion.p>
+
+            {/* Core Competency Highlights */}
+            <motion.div
+              variants={fadeUpVariants}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8"
+            >
+              <div className="p-3.5 border border-[#8C6D4F]/30 bg-[#100D0A]/70 rounded-sm">
+                <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">// DATA TRANSFORMATION</span>
+                <p className="text-xs text-[#C4B29E] font-light">Cleansing, modeling &amp; structuring complex datasets for high-efficiency reporting.</p>
+              </div>
+              <div className="p-3.5 border border-[#8C6D4F]/30 bg-[#100D0A]/70 rounded-sm">
+                <span className="text-[10px] font-mono text-[#D4AF37] block mb-1">// CLOUD TO DASHBOARD</span>
+                <p className="text-xs text-[#C4B29E] font-light">Connecting cloud data warehouses (Google BigQuery) with interactive Power BI dashboards.</p>
+              </div>
+            </motion.div>
+
+            {/* Key Academic & Project Metrics */}
             <motion.div 
               variants={fadeUpVariants}
               className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 pb-2 border-t border-[#8C6D4F]/25"
@@ -148,10 +170,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#F4EBE2] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  1200+
+                  2029
                 </span>
-                <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  DSA Solved
+                <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-[#A8988B] mt-0.5">
+                  Graduation · REVA
                 </span>
               </div>
 
@@ -161,10 +183,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#D4AF37] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  9.07
+                  4+
                 </span>
-                <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  B.Tech CGPA
+                <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-[#A8988B] mt-0.5">
+                  Core Projects
                 </span>
               </div>
 
@@ -174,10 +196,10 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#F4EBE2] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  40+
+                  10+
                 </span>
-                <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  Industry-Grade Projects
+                <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-[#A8988B] mt-0.5">
+                  Dashboard Pages
                 </span>
               </div>
 
@@ -187,16 +209,16 @@ export const AboutSection: React.FC = () => {
                   className="text-3xl sm:text-4xl font-light text-[#D4AF37] tracking-tight"
                   style={{ fontFamily: "'Bebas Neue', sans-serif" }}
                 >
-                  Top 100
+                  BOOTCAMP
                 </span>
-                <span className="text-[10px] font-medium tracking-[0.22em] uppercase text-[#A8988B] mt-0.5">
-                  Myntra Hackerramp
+                <span className="text-[10px] font-medium tracking-[0.2em] uppercase text-[#A8988B] mt-0.5">
+                  Certified Analyst
                 </span>
               </div>
             </motion.div>
           </motion.div>
 
-          {/* ================= RIGHT PORTRAIT FRAME (PERFECT LOCKED GEOMETRY) ================= */}
+          {/* ================= RIGHT PORTRAIT FRAME (3D INTERACTIVE TILT) ================= */}
           <div className="lg:col-span-5 flex items-center justify-center relative perspective-[1400px]">
             
             {/* Ambient Animated Gold Glow Ring Behind Frame */}
@@ -239,7 +261,7 @@ export const AboutSection: React.FC = () => {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="relative p-3.5 border border-[#8C6D4F]/40 rounded-sm bg-[#120F0C]/80 backdrop-blur-xl shadow-[0_25px_70px_rgba(0,0,0,0.95)] cursor-pointer group transition-colors duration-500 hover:border-[#D4AF37]/80"
+              className="relative p-3.5 border border-[#8C6D4F]/40 rounded-sm bg-[#120F0C]/85 backdrop-blur-xl shadow-[0_25px_70px_rgba(0,0,0,0.95)] cursor-pointer group transition-colors duration-500 hover:border-[#D4AF37]/80 w-full max-w-[390px]"
             >
               {/* Dynamic Laser Border Pulse on Card Perimeter */}
               <div className="absolute inset-0 rounded-sm pointer-events-none overflow-hidden">
@@ -259,12 +281,12 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Portrait Image Canvas */}
-              <div className="relative overflow-hidden w-full max-w-[390px] aspect-[4/5] bg-black rounded-sm">
-                {/* Main Portrait */}
+              <div className="relative overflow-hidden w-full aspect-[4/5] bg-[#0A0806] rounded-sm">
+                {/* Karthik's Authentic Executive Studio Portrait */}
                 <img
-                  src={aboutImg}
-                  alt="Damisetti Shamya Lohitha"
-                  className="w-full h-full object-cover object-top filter brightness-[0.94] contrast-[1.06] saturate-[1.02] group-hover:brightness-105 group-hover:contrast-[1.12] transition-all duration-700 ease-out"
+                  src={karthikPortraitImg}
+                  alt="Karthik T — Executive Studio Portrait"
+                  className="w-full h-full object-cover object-center filter brightness-[1.0] contrast-[1.02] group-hover:scale-[1.03] transition-all duration-700 ease-out"
                 />
 
                 {/* Mouse-Tracked Holographic Glass Spotlight Sweep */}
@@ -276,16 +298,24 @@ export const AboutSection: React.FC = () => {
                   }}
                 />
 
-                {/* Bottom Film Noir Shadow */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
+                {/* Bottom Shadow Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
 
-                {/* Monoline Signature */}
-                <div className="absolute bottom-4 right-4 z-20 select-none">
+                {/* Monoline Signature & Badge */}
+                <div className="absolute bottom-3 left-4 right-4 z-20 flex items-end justify-between select-none">
+                  <div>
+                    <span className="text-[9px] font-mono tracking-[0.2em] text-[#D4AF37] block uppercase">
+                      BENGALURU, INDIA
+                    </span>
+                    <span className="text-xs text-[#EAD8C7] font-medium tracking-wider">
+                      KARTHIK T
+                    </span>
+                  </div>
                   <span 
                     className="text-3xl text-[#F2D8A7] drop-shadow-[0_0_12px_rgba(242,216,167,0.5)] transition-colors duration-300 group-hover:text-white"
                     style={{ fontFamily: "'Herr Von Muellerhoff', cursive" }}
                   >
-                    Lohitha
+                    Karthik
                   </span>
                 </div>
               </div>
